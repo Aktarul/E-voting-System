@@ -4,5 +4,7 @@ var express = require('express'),
 
 router.post('/', voterController.createVoter);
 router.get('/', voterController.getAllVoter);
+router.get('/:id', voterController.getSingleVoter);
+router.patch('/:id', voterController.updateVoter);
 
 module.exports = router;

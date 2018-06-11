@@ -44,6 +44,7 @@ var updateVoter = (req, res, next)=>{
         position = req.body.position,
         dept = req.body.dept,
         email = req.body.email,
+        status = req.body.status,
         username = req.body.username,
         password = req.body.password;
 
@@ -60,15 +61,22 @@ var updateVoter = (req, res, next)=>{
             voter.middleName = firstName || voter.middleName;
             voter.lastName = firstName || voter.lastName;
             voter.dept = firstName || voter.dept;
-            voter.status = firstName || voter.status;
-            voter.email = firstName || voter.email;
-            voter.username = firstName || voter.username;
-            voter.password = firstName || voter.password;
+            voter.status = status || voter.status;
+            voter.email = email || voter.email;
+            voter.username = username || voter.username;
+            voter.password = password || voter.password;
 
             voter.save((err, voter) => {
                 if(err){
                     return res.status(404).json({
-                        
+                        success:false,
+                        message:err
+                    })
+                }
+                else{
+                    return res.status(200).json({
+                        success: true,
+                        data: voter
                     })
                 }
             })
@@ -94,8 +102,43 @@ var getAllVoter = (req, res, next)=>{
     })
 }
 
+var deleteVoter = (req, res, next) =>{
+    Voter.findByIdAndRemove( req.params.id, (err, voter) =>{
+        if(err){
+            return res.status(401).json({
+                success: false,
+                message: err
+            })
+        }else{
+            return res.status(201).json({
+                success: true,
+                data: voter
+            })
+        }
+    })
+}
+
+var getSingleVoter = (req, res, next) =>{
+    Voter.findById(req.params.id, (err, voter)=>{
+        if(err){
+            return res.status(404).json({
+                success: false,
+                message: err
+            })
+        }else {
+            return res.status(200).json({
+                success: true,
+                data: voter
+            })
+        }
+    })
+}
+
 
 module.exports = {
     createVoter,
-    getAllVoter
+    getAllVoter,
+    updateVoter,
+    deleteVoter,
+    getSingleVoter
 }

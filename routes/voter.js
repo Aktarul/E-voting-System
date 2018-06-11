@@ -3,5 +3,6 @@ var express = require('express'),
     voterController = require('../controller/voter');
 
 router.post('/', voterController.createVoter);
+router.get('/', voterController.getAllVoter);
 
 module.exports = router;

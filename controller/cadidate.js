@@ -85,7 +85,7 @@ var updateCandidate = (req, res, next) =>{
             candidate.username = position || candidate.username;
 
 
-            candidate.save((err, product) => {
+            candidate.save((err, candidate) => {
                 if(err){
                     return res.status(404).json({
                         message: err,
@@ -126,7 +126,18 @@ var getAllCandidate = (req, res, next) =>{
 }
 
 var deleteCandidate = (req, res, next) =>{
-    
+    let userId = req.params.id;
+    if (!userId) {
+        return res.status(202).json({ success: false, message: 'Invalid or incomplete property.'});
+    } else {
+        Cadidate.findByIdAndRemove(userId, (err, user) => {
+            if (err) {
+                return res.status(401).json({ success: false, message: 'Fatal Server Error: ' + err});
+            } else {
+                return res.status(201).json({ success: true, message: 'Successfully delete the user.', data: user });
+            }
+        });
+    }
 }
 
 
@@ -134,5 +145,6 @@ var deleteCandidate = (req, res, next) =>{
 module.exports = {
     createCadidate,
     updateCandidate,
-    getAllCandidate
+    getAllCandidate,
+    deleteCandidate
 }

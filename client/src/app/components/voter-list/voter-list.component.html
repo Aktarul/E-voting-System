@@ -1,6 +1,38 @@
 <app-navbar></app-navbar>
 <div class="container">
-  <app-inner-navbar></app-inner-navbar>
+
+  <nav style="margin: 15px" class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#"><i class="fas fa-home"></i> Home</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="candidate-list"><b><i class="fas fa-list"></i> Candidate List</b><span class="sr-only">(current)</span></a></li>
+          <li class="active"><a href="voter-list"> <i class="fas fa-list"></i> Voters List</a></li>
+          <li><a href="#"><i class="far fa-chart-bar"></i>  Canvassing Report</a></li>
+          <li><a href="#"> <i class="fas fa-history"></i>  History Log</a></li>
+          <li><a href="#"><i class="fab fa-adn"></i> About</a></li>
+        </ul>
+
+        <form class="navbar-form navbar-right">
+          <button type="submit" class="btn btn-warning">Logout</button>
+        </form>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+
+
   <div style="margin-left: -1px" id="loginbox" style="margin-top:10px;" class="mainbox col-md-12 col-sm-12 col-xs-12">
     <div class="panel panel-info" >
       <div class="panel-heading">
@@ -9,7 +41,7 @@
             <button type="button" class="btn btn-default">All</button>
             <button type="button" class="btn btn-default">Voted Voters</button>
             <button type="button" class="btn btn-default">UnVoted Voters</button>
-            <button type="button" class="btn btn-default">Add Voters</button>
+            <button (click)="addVoter()" type="button" class="btn btn-default"><i class="fas fa-plus"></i> Add Voters</button>
 
           </div>
 
@@ -62,22 +94,15 @@
               <th>Actions</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody *ngFor="let voter of voters">
             <tr>
-              <td>Anna</td>
-              <td>Pitt</td>
-              <td>35</td>
-              <td>New York</td>
-              <td>Voted</td>
-              <td><button class="btn btn-danger">delete</button></td>
-            </tr>
-            <tr>
-              <td>Anna</td>
-              <td>Pitt</td>
-              <td>35</td>
-              <td>New York</td>
-              <td>Voted</td>
-              <td><button class="btn btn-danger">delete</button></td>
+              <td>{{voter.firstName}}</td>
+              <td>{{voter.lastName}}</td>
+              <td>{{voter.dept}}</td>
+              <td ><img src="http://localhost:8080/{{voter.picture}}" height="40px" width="60px" alt="no photo"></td>
+              <td *ngIf="!voter.status">Unvoted</td>
+              <td *ngIf="voter.status">Voted</td>
+              <td><button (click)="deleteVoter(voter)" class="btn btn-danger"><i class="far fa-trash-alt"></i> delete</button></td>
             </tr>
             </tbody>
           </table>

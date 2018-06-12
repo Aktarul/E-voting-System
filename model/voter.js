@@ -8,7 +8,7 @@ var userSchema = new Schema({
     lastName: { type: String},
     dept: {type: String},
     status: {type: Boolean, default: false},
-    picture: [String],
+    picture: {type: String},
     email: { type: String, required: true},
     username: { type: String, required: true },
     password: { type: String, required: true}

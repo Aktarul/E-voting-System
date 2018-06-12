@@ -14,6 +14,20 @@ import { CandidateListComponent } from './components/candidate-list/candidate-li
 import { CanvassingReportComponent } from './components/canvassing-report/canvassing-report.component';
 import { VotePageComponent } from './components/vote-page/vote-page.component';
 import { ValidateVoterComponent } from './components/validate-voter/validate-voter.component';
+import { VicePresidentComponent } from './components/vice-president/vice-president.component';
+import { GeneralSecretaryComponent } from './components/general-secretary/general-secretary.component';
+import { JointSecretaryComponent } from './components/joint-secretary/joint-secretary.component';
+import { TeasurerComponent } from './components/teasurer/teasurer.component';
+import { MemberComponent } from './components/member/member.component';
+import { AddCandidateComponent } from './components/add-candidate/add-candidate.component';
+import { AddVoterComponent } from './components/add-voter/add-voter.component';
+
+import {VoterService} from "./services/voter.service";
+import {HttpModule} from "@angular/http";
+import { PhotoUploadComponent } from './components/photo-upload/photo-upload.component';
+import {FileUploadModule} from "ng2-file-upload";
+import {PasswordValidationService} from "./services/password-validation.service";
+import {CandidateService} from "./services/candidate.service";
 
 @NgModule({
   declarations: [
@@ -26,15 +40,30 @@ import { ValidateVoterComponent } from './components/validate-voter/validate-vot
     CandidateListComponent,
     CanvassingReportComponent,
     VotePageComponent,
-    ValidateVoterComponent
+    ValidateVoterComponent,
+    VicePresidentComponent,
+    GeneralSecretaryComponent,
+    JointSecretaryComponent,
+    TeasurerComponent,
+    MemberComponent,
+    AddCandidateComponent,
+    AddVoterComponent,
+    PhotoUploadComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    HttpModule,
+    ReactiveFormsModule,
+    FileUploadModule
   ],
-  providers: [],
+  providers: [
+    VoterService,
+    PasswordValidationService,
+    CandidateService
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

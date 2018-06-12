@@ -3,11 +3,11 @@ import { FormGroup, FormBuilder, FormControl, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class AdminComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   formTitle: String;
   loginForm: FormGroup;
@@ -31,5 +31,6 @@ export class AdminComponent implements OnInit {
   getUser(formData: FormGroup){
 
   }
+
 
 }

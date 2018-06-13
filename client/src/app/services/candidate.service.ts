@@ -18,13 +18,16 @@ export class CandidateService {
 
 
   getCandidate(){
-    let headers  = new Headers();
-
-    headers.append('content-type','applicationn/json');
 
     return this.http.get(`${environment.baseUrl}/candidate`, this.options)
       .map(res=>res.json());
 
+  }
+
+  getSingleCandidate(id){
+
+    return this.http.get(`${environment.baseUrl}/candidate/${id}`, this.options)
+      .map(res=>res.json());
   }
 
   registerCandidate(candidate){
@@ -34,6 +37,11 @@ export class CandidateService {
 
   deleteCandidate(id){
     return this.http.delete(`${environment.baseUrl}/candidate/${id}`, this.options)
+      .map( res=> res.json());
+  }
+
+  updateCandidate(candidate){
+    return this.http.patch(`${environment.baseUrl}/candidate/${candidate._id}`, candidate, this.options)
       .map( res=> res.json());
   }
 

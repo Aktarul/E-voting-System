@@ -17,6 +17,8 @@ import {JointSecretaryComponent} from "./components/joint-secretary/joint-secret
 import {AddCandidateComponent} from "./components/add-candidate/add-candidate.component";
 import {AddVoterComponent} from "./components/add-voter/add-voter.component";
 import {PhotoUploadComponent} from "./components/photo-upload/photo-upload.component";
+import {PhotoUploadCandidateComponent} from "./components/photo-upload-candidate/photo-upload-candidate.component";
+import {UpdateCandidateComponent} from "./components/update-candidate/update-candidate.component";
 
 const routes: Routes = [
   {path:'admin', component: AdminComponent},
@@ -33,7 +35,9 @@ const routes: Routes = [
   {path: 'joint-secretary', component: JointSecretaryComponent},
   {path: 'add-candidate', component: AddCandidateComponent},
   {path: 'add-voter', component: AddVoterComponent},
-  {path: 'photo-upload/:id', component: PhotoUploadComponent}
+  {path: 'photo-upload/:id', component: PhotoUploadComponent},
+  {path:'photo-upload-candidate/:id', component: PhotoUploadCandidateComponent},
+  {path: 'update-candidate/:id', component: UpdateCandidateComponent}
 ];
 
 @NgModule({

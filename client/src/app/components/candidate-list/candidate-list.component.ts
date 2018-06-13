@@ -32,4 +32,15 @@ export class CandidateListComponent implements OnInit {
     this.router.navigate(['add-candidate']);
   }
 
+  updateCandidate(candidate){
+    this.router.navigate([`update-candidate/${candidate._id}`]);
+  }
+
+  deleteCandidate(candidate){
+    this.candidateService.deleteCandidate(candidate._id)
+      .subscribe(res=>{
+        console.log(res.data);
+      })
+  }
+
 }

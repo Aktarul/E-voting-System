@@ -78,11 +78,11 @@ var updateCandidate = (req, res, next) =>{
 
             candidate.firstName = firstName || candidate.firstName;
             candidate.middleName = middleName || candidate.middleName;
-            candidate.lastName = middleName || candidate.lastName;
-            candidate.dept = middleName || candidate.dept;
+            candidate.lastName = lastName || candidate.lastName;
+            candidate.dept = dept || candidate.dept;
             candidate.position = position || candidate.position;
-            candidate.email = position || candidate.email;
-            candidate.username = position || candidate.username;
+            candidate.email = email || candidate.email;
+            candidate.username = username || candidate.username;
 
 
             candidate.save((err, candidate) => {
@@ -107,8 +107,95 @@ var updateCandidate = (req, res, next) =>{
 
 }
 
+var updateCandidate2 = (req, res, next) =>{
+
+    upload( req, res, (err) =>{
+        if(err){
+
+        }
+        else{
+
+
+            var firstName = req.body.firstName,
+                middleName = req.body.middleName,
+                lastName = req.body.lastName,
+                position = req.body.position,
+                dept = req.body.dept,
+                email = req.body.email,
+                username = req.body.username,
+                password = req.body.password;
+                picture = req.file.filename ;
+
+
+
+
+            Cadidate.findById(req.params.id, (err, candidate) => {
+                if(err){
+                    return res.status(404).json({
+                        message: err,
+                        success: false
+                    });
+                }
+                else {
+
+
+                    candidate.firstName = firstName || candidate.firstName;
+                    candidate.middleName = middleName || candidate.middleName;
+                    candidate.lastName = middleName || candidate.lastName;
+                    candidate.dept = middleName || candidate.dept;
+                    candidate.position = position || candidate.position;
+                    candidate.email = position || candidate.email;
+                    candidate.username = position || candidate.username;
+                    candidate.picture = picture || candidate.picture;
+
+
+                    candidate.save((err, candidate) => {
+                        if(err){
+                            return res.status(404).json({
+                                message: err,
+                                success: false
+                            });
+                        }
+                        else {
+
+
+
+                            return res.status(200).json({
+                                success: true,
+                                data: candidate
+                            });
+                        }
+                    });
+                }
+            });
+
+        }
+    })
+
+
+}
+
 var getAllCandidate = (req, res, next) =>{
     Cadidate.find( (err, candidate)=>{
+        if(err){
+            return res.status(404).json({
+                success: false,
+                message: err
+            })
+
+        }
+        else{
+            return res.status(200).json({
+                success: true,
+                data: candidate
+            })
+        }
+    })
+}
+
+
+var getSingleCandidate = (req, res, next) =>{
+    Cadidate.findById( req.params.id, (err, candidate)=>{
         if(err){
             return res.status(404).json({
                 success: false,
@@ -146,5 +233,7 @@ module.exports = {
     createCadidate,
     updateCandidate,
     getAllCandidate,
-    deleteCandidate
+    deleteCandidate,
+    updateCandidate2,
+    getSingleCandidate
 }

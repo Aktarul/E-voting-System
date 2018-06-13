@@ -28,6 +28,8 @@ import { PhotoUploadComponent } from './components/photo-upload/photo-upload.com
 import {FileUploadModule} from "ng2-file-upload";
 import {PasswordValidationService} from "./services/password-validation.service";
 import {CandidateService} from "./services/candidate.service";
+import { PhotoUploadCandidateComponent } from './components/photo-upload-candidate/photo-upload-candidate.component';
+import { UpdateCandidateComponent } from './components/update-candidate/update-candidate.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import {CandidateService} from "./services/candidate.service";
     AddCandidateComponent,
     AddVoterComponent,
     PhotoUploadComponent,
+    PhotoUploadCandidateComponent,
+    UpdateCandidateComponent,
   ],
   imports: [
     BrowserModule,

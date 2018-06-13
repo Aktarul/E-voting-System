@@ -9,6 +9,7 @@ import 'rxjs/add/observable/throw';
 import { VoterService} from "../../services/voter.service";
 import { ActivatedRoute } from '@angular/router';
 import { environment} from "../../../environments/environment";
+import { Router} from "@angular/router";
 
 
 const uri = 'http://localhost:3000/product';
@@ -38,6 +39,7 @@ export class PhotoUploadComponent implements OnInit {
   constructor(
     private voterService: VoterService,
     private route: ActivatedRoute,
+    private router: Router
 
   ){
 
@@ -57,6 +59,8 @@ export class PhotoUploadComponent implements OnInit {
     this.uploader.onCompleteItem = (item:any, response:any , status:any, headers:any) => {
       this.attachmentList.push(JSON.parse(response));
       console.log(item);
+
+      this.router.navigate(['/voter-list']);
     }
   }
 }

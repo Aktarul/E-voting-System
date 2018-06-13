@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CandidateService} from "../../services/candidate.service";
 import { Candidate} from "../../models/candidate";
 import { Location} from "@angular/common";
+import { Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-candidate',
@@ -12,7 +13,8 @@ export class AddCandidateComponent implements OnInit {
 
   constructor(
     private candidateService: CandidateService,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) { }
 
 
@@ -44,7 +46,7 @@ export class AddCandidateComponent implements OnInit {
 
     this.candidateService.registerCandidate(this.candidate)
       .subscribe(res=>{
-            this.location.back();
+            this.router.navigate([`photo-upload-candidate/${res.data._id}`]);
       })
 
 

@@ -16,7 +16,7 @@
           </div>
 
         </div>
-        <button style="margin-top: 5px" class="btn btn-default"><i class="fas fa-plus"></i> Add Candidates</button>
+        <button (click)="registerCandidate()" style="margin-top: 5px" class="btn btn-default"><i class="fas fa-plus"></i> Add Candidates</button>
       </div>
 
       <div class="panel-body" >
@@ -63,12 +63,12 @@
               <th style="text-align: center">Actions</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody *ngFor="let candidate of candidates">
             <tr>
-              <td>1</td>
-              <td>Anna</td>
-              <td>Pitt</td>
-              <td>35</td>
+              <td>{{candidate.position}}</td>
+              <td>{{candidate.firstName}}</td>
+              <td>{{candidate.lastName}}</td>
+              <td>{{candidate.dept}}</td>
               <td>New York</td>
               <td style="text-align: center">
                 <button class="btn btn-primary"><i class="far fa-edit"></i> Edit</button>

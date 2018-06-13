@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CandidateService} from "../../services/candidate.service";
+import { Candidate} from "../../models/candidate";
+import { Location} from "@angular/common";
 
 @Component({
   selector: 'app-add-candidate',
@@ -7,9 +10,45 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddCandidateComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private candidateService: CandidateService,
+    private location: Location
+  ) { }
+
+
+  candidate = new Candidate();
+
+  firstName: String;
+  middleName: String;
+  lastName: String;
+  position: String;
+  dept: String;
+  email: String;
+  username: String;
+  password: String;
 
   ngOnInit() {
+
+  }
+
+  registerCandidate(){
+
+    this.candidate.firstName = this.firstName;
+    this.candidate.middleName = this.middleName;
+    this.candidate.lastName = this.lastName;
+    this.candidate.position = this.position;
+    this.candidate.dept = this.dept;
+    this.candidate.email = this.email;
+    this.candidate.username = this.username;
+    this.candidate.password = this.password;
+
+    this.candidateService.registerCandidate(this.candidate)
+      .subscribe(res=>{
+            this.location.back();
+      })
+
+
+
   }
 
 }

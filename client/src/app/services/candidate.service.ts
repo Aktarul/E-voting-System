@@ -27,8 +27,8 @@ export class CandidateService {
 
   }
 
-  registerCandidate(voter){
-    return this.http.post(`${environment.baseUrl}/candidate`,voter,this.options)
+  registerCandidate(candidate){
+    return this.http.post(`${environment.baseUrl}/candidate`,candidate,this.options)
       .map( res=>res.json());
   }
 

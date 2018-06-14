@@ -30,6 +30,7 @@ import {PasswordValidationService} from "./services/password-validation.service"
 import {CandidateService} from "./services/candidate.service";
 import { PhotoUploadCandidateComponent } from './components/photo-upload-candidate/photo-upload-candidate.component';
 import { UpdateCandidateComponent } from './components/update-candidate/update-candidate.component';
+import { ViewCandidateComponent } from './components/view-candidate/view-candidate.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { UpdateCandidateComponent } from './components/update-candidate/update-c
     PhotoUploadComponent,
     PhotoUploadCandidateComponent,
     UpdateCandidateComponent,
+    ViewCandidateComponent,
   ],
   imports: [
     BrowserModule,

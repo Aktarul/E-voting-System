@@ -36,11 +36,32 @@ export class CandidateListComponent implements OnInit {
     this.router.navigate([`update-candidate/${candidate._id}`]);
   }
 
+  // deleteCandidate(candidate){
+  //   this.candidateService.deleteCandidate(candidate._id)
+  //     .subscribe(res=>{
+  //       console.log(res.data);
+  //     })
+  // }
+
+
   deleteCandidate(candidate){
-    this.candidateService.deleteCandidate(candidate._id)
-      .subscribe(res=>{
-        console.log(res.data);
-      })
+    var r = confirm("Are you sure!");
+    if (r == true) {
+      this.candidates.splice(this.candidates.indexOf(candidate), 1);
+      this.candidateService.deleteCandidate(candidate._id)
+        .subscribe(res=>{
+
+
+        })
+    } else {
+      // this.toasterService.Warning("You have cancelled deletion!!");
+    }
   }
+
+  viewCandidate(candidate){
+    this.router.navigate([`view-candidate/${candidate._id}`]);
+  }
+
+
 
 }

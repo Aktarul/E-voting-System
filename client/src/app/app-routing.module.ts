@@ -19,6 +19,7 @@ import {AddVoterComponent} from "./components/add-voter/add-voter.component";
 import {PhotoUploadComponent} from "./components/photo-upload/photo-upload.component";
 import {PhotoUploadCandidateComponent} from "./components/photo-upload-candidate/photo-upload-candidate.component";
 import {UpdateCandidateComponent} from "./components/update-candidate/update-candidate.component";
+import {ViewCandidateComponent} from "./components/view-candidate/view-candidate.component";
 
 const routes: Routes = [
   {path:'admin', component: AdminComponent},
@@ -37,7 +38,8 @@ const routes: Routes = [
   {path: 'add-voter', component: AddVoterComponent},
   {path: 'photo-upload/:id', component: PhotoUploadComponent},
   {path:'photo-upload-candidate/:id', component: PhotoUploadCandidateComponent},
-  {path: 'update-candidate/:id', component: UpdateCandidateComponent}
+  {path: 'update-candidate/:id', component: UpdateCandidateComponent},
+  {path: 'view-candidate/:id', component: ViewCandidateComponent}
 ];
 
 @NgModule({
